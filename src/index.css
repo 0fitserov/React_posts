@@ -7,7 +7,41 @@ html {
 	box-sizing: border-box;
 }
 body {
-	font-family: "Nunito", "Arial", "Helvetica", sans-serif;
+	font-family: "Helvetica", sans-serif; /* 'Raleway' "Nunito", "Arial", , sans-serif; */
+}
+
+.header {
+	display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    padding: 20px;
+	position: sticky;
+    top: 0;
+    background: rgb(238, 238, 238);
+
+}
+
+.header__logo {
+	width: 220px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	border: 1px solid gray;
+	border-radius: 15px; 
+}
+
+.footer {
+	display: flex;
+    justify-content: space-between;
+    align-items: center; 
+	background: rgb(238, 238, 238);
+	padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.h2 {
+	margin: 50px;
 }
 
 .container {
@@ -18,3 +52,19 @@ body {
 }
 
 
+.card {
+	background: rgb(238, 238, 238);
+	width: 300px;
+	height: 150px;
+	border: 1px solid gray;
+	padding: 20px;
+	margin: 10px;
+	border-radius: 15px; 
+
+}
+
+.listsPosts {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 40px; 
+}
