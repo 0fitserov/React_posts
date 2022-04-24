@@ -7,8 +7,14 @@ html {
 	box-sizing: border-box;
 }
 body {
+	background: #F7F7F7;
 	font-family: "Helvetica", sans-serif; /* 'Raleway' "Nunito", "Arial", , sans-serif; */
 }
+
+main {
+	
+}
+
 
 .header {
 	display: flex;
@@ -35,13 +41,19 @@ body {
     justify-content: space-between;
     align-items: center; 
 	background: rgb(238, 238, 238);
-	padding: 10px 20px;
+	padding: 30px 30px;
     font-size: 16px;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 .h2 {
 	margin: 50px;
+}
+
+.listsPosts a {
+	display: grid;
+	justify-content: center;
+	
 }
 
 .container {
@@ -54,17 +66,63 @@ body {
 
 .card {
 	background: rgb(238, 238, 238);
-	width: 300px;
-	height: 150px;
-	border: 1px solid gray;
-	padding: 20px;
-	margin: 10px;
+	border: 1px solid #B3B3B3;
+	padding: 0;
+	margin: 0;
 	border-radius: 15px; 
+	display: grid;
+	grid-template-rows: minmax(0px, max-content) 10fr minmax(0px, max-content);
+    grid-template-columns: minmax(50px, max-content);
+	
+}
+
+.cardHeader {
+	display: flex;
+    justify-content: left;
+	align-items: center;
+	gap: 20px;
+	padding: 12px;
+}
+
+.picCardHeader {
+	border: 1px solid #B3B3B3;
+	border-radius: 10px; 
+	width: 50px;
+	height: 50px;
+	object-fit: cover;
+}
+
+.cardContent{
+	overflow: hidden;
+}
+
+.cardInfo{
+	line-height: 1.5;
+	box-sizing: inherit;
+	padding: 0px 24px;
+}
+
+.cardPic {
+	max-width: 100%;
+    width: 500px;
+	vertical-align: middle;
+    border-style: none;
 
 }
 
+.cardFooter {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0px 16px;
+}
+
+
+
 .listsPosts {
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 40px; 
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    gap: 20px;
+	margin: 40px 10px;
+	
 }

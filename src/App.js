@@ -37,7 +37,7 @@ function App() {
     return <>
         <BrowserRouter>
             <Header user={user} />
-            <main className="listsPosts">
+            <main>
                 {/* <ListPosts posts={posts} /> */}
                 <Routes>
                     <Route path="/" element={<Posts posts={posts} />} />

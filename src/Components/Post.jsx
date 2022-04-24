@@ -7,13 +7,29 @@ import { Routes, Route, useParams } from "react-router-dom";
 
 
 const Post = (props) => {
-    // console.log(props.author.name);
     return <>
-        
+
         <div className='card'>
-        {/* <img src={props.image} alt={props.author.name}></img> */}
-            <div>{props.author.name}</div>
-            <div>{props.author.about}</div>
+            <div className='cardHeader'>
+                <img className='picCardHeader' src={props.author.avatar} alt={props.author.name}></img>
+                <div>
+                    <div>{props.author.name}</div>
+                    <div>{props.author.about}</div>
+                </div>
+            </div>
+            <div className='cardContent'>
+                <img className='cardPic' src={props.image} alt="img"></img>
+                <div className='cardInfo'>
+                    <h4>{props.title}</h4>
+                    <p>{props.text}</p>
+                </div>
+            </div>
+            <div className='cardFooter'>
+                <h4>like</h4>
+                <div>{props.updated_at}</div>
+            </div>
+
+
         </div>
     </>
     // const { id } = useParams();
