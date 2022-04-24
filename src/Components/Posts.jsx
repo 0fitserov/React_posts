@@ -8,12 +8,15 @@ const Posts = ({posts}) => {
     return (
         <div className="listsPosts">
             {posts.map((post, i) => (
-                <Link to={`/post/${post._id}`} key={`${post._id}${i}`}>
-                    <Post {...post} />
-                </Link>
+                
+                <Post {...post} key={post._id} />
             ))}
         </div>
     );
 };
 
 export default Posts;
+
+{/* <Link to={`/post/${post._id}`} key={`${post._id}${i}`}>
+                    
+                </Link> */}

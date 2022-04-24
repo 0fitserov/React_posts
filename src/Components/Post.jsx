@@ -7,6 +7,8 @@ import { Routes, Route, useParams } from "react-router-dom";
 
 
 const Post = (props) => {
+    const dateUpdate = new Date(props.updated_at);
+    const displayDate = `${dateUpdate.getDate()}.${dateUpdate.getMonth()}.${dateUpdate.getFullYear()}`
     return <>
 
         <div className='card'>
@@ -26,7 +28,7 @@ const Post = (props) => {
             </div>
             <div className='cardFooter'>
                 <h4>like</h4>
-                <div>{props.updated_at}</div>
+                <div>{displayDate}</div>
             </div>
 
 
