@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import Modal from './Modal/Index';
+import UserEdit from './UserEdit';
 import Logo from '../Logo';
+
 import "../index.css";
 
-
 const Header = ({ user, handleEditClick }) => {
+
+    const [modalActivity, setModalActivity] = useState(false);
+
+    const openModal = () => {
+        setModalActivity(true)
+    }
 
     return <>
         <div className='header'>
@@ -17,11 +26,15 @@ const Header = ({ user, handleEditClick }) => {
                     <div>{user.name}</div>
                     <div>{user.about}</div>
                 </div>
-                <button className='btn btnUserEdit btnOk' onClick={handleEditClick}>Edit</button>
+                <button className='btn btnUserEdit btnOk' onClick={openModal}>Edit</button>
 
             </div>
 
         </div>
+        {modalActivity && <Modal>
+            <UserEdit user={user} />
+        </Modal>}
+
     </>
 
 }

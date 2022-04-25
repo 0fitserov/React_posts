@@ -27,7 +27,7 @@ function App() {
     }
 
     const handleModalCreate = () => {
-        console.log("create");
+        console.log("create"); //создание поста по кнопке create
 
     }
 
@@ -67,18 +67,18 @@ function App() {
                     <Route exact path="/post/:id" element={<Post />} />
                     <Route path="/edit-post" element={<Posts />} />
                 </Routes>
-                {modalActivity && <Modal title="Profile" handleCreateClick={handleModalCreate} handleCloseModal={closeModal}>
+                {/* {modalActivity && <Modal title="Profile" handleCreateClick={handleModalCreate} handleCloseModal={closeModal}>
                     <Routes>
                         <Route path="/" element={<UserEdit user={user} />} />
                         <Route path="/create-post" element={<CreatePost />} />
-                        <Route path="/edit-post" element={<Posts />} />
                     </Routes>
-                </Modal>}
+                </Modal>} */}
+                <div id="modal-root"/>
 
             </main>
             <Footer />
         </BrowserRouter>
-    </>
+            </>
 };
 
 export default App;
