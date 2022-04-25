@@ -4,7 +4,7 @@ const CreatePost = () => {
     const [title, setTitle] = useState("")
     const [urlImg, setUrlImg] = useState("")
     const [text, setText] = useState("")
-    const [tags, setTags] = useState("")
+    const [tags, setTags] = useState([])
 
     const handleChangeUrlImg = (e) => {
         setUrlImg(e.target.value);

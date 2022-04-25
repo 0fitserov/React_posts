@@ -40,6 +40,32 @@ class Api {
         }).then(responseHandler);
 
     }
+
+    saveUserAvatar(avatar) {
+        return fetch( `${this.path}/users/me/avatar`, {
+            headers: {
+                authorization: `Bearer ${this.token}`,
+                'Content-Type': 'application/json'
+            },
+            method: 'PATCH',
+            body: JSON.stringify({avatar})
+
+        }).then(responseHandler)
+    }
+
+    saveUserInfo(name, about) {
+        return fetch( `${this.path}/users/me`, {
+            headers: {
+                authorization: `Bearer ${this.token}`,
+                'Content-Type': 'application/json'
+            },
+            method: 'PATCH',
+            body: JSON.stringify({about, name})
+
+        }).then(responseHandler)
+    }
+
+
 }
 
 const api = new Api(config);

@@ -27,18 +27,13 @@ const ModalComponent = ({ handleCloseModal, handleCreateClick, title, children }
 }
 
 const Modal = (props) => {
-    const rootRef = useRef(null);
+    
 
-    useEffect(() => {
-        rootRef.current = document.getElementById("modal-root")
-    }, [])
-
-    console.log("render")
-    if (rootRef.current===null) { return null } 
+    
 
     return ReactDOM.createPortal(
         <ModalComponent {...props} />,
-        rootRef.current
+        document.getElementById("modal-root")
     );
 }
 
