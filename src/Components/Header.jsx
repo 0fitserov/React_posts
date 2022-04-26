@@ -16,8 +16,6 @@ const Header = ({ user, handleEditClick }) => {
     setModalActivity(false);
   };
 
-  
-
   return (
     <>
       <div className="header">
@@ -40,11 +38,7 @@ const Header = ({ user, handleEditClick }) => {
           </button>
         </div>
       </div>
-      {modalActivity && (
-        
-          <UserEdit user={user} closeModal={closeModal} />
-        
-      )}
+      {modalActivity && <UserEdit user={user} closeModal={closeModal} />}
     </>
   );
 };

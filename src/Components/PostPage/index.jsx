@@ -3,7 +3,14 @@ import "./index.css"
 
 const PostPage = (props) => {
     const dateUpdate = new Date(props.updated_at);
-    const displayDate = `${dateUpdate.getDate()}.${dateUpdate.getMonth()}.${dateUpdate.getFullYear()}`
+    const displayDate = `${dateUpdate.getDate()}.${dateUpdate.getMonth()}.${dateUpdate.getFullYear()}`;
+    const [post, setPost] = useState([]);
+
+    useEffect(() => {
+        api.getSinglePost().then((ans) => {
+          setPost(ans); //получение одного поста /posts/:id в Api getPost(token)
+         });
+       }, []); 
 
     return <>
         <div className="postPage">

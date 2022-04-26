@@ -33,12 +33,24 @@ class Api {
     }
 
     getSinglePost() {
-        return fetch(`${this.path}/posts/${id}`, {
+        return fetch(`${this.path}/post/${_id}`, {
             headers: {
                 authorization: `Bearer ${this.token}`
             }
         }).then(responseHandler);
 
+    }
+
+    savePost(title, text, image, tags) {
+        return fetch( `${this.path}/posts`, {
+            headers: {
+                authorization: `Bearer ${this.token}`,
+                'Content-Type': 'application/json'
+            },
+            method: 'POST',
+            body: JSON.stringify({title, text, image, tags})
+
+        }).then(responseHandler)
     }
 
     saveUserAvatar(avatar) {

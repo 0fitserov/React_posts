@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
-import Post from "./Components/Post";
 import Posts from "./Components/Posts";
-import UserEdit from "./Components/UserEdit";
-import Modal from "./Components/Modal/Index";
+import Post from "./Components/Post";
 import CreatePost from "./Components/CreatePost";
+import PostPage from "./Components/PostPage";
 
 import api from "./Api";
 
@@ -25,30 +24,23 @@ function App() {
     setModalActivity(false);
   };
 
-  const savePost = () => {};
-
-  const handleModalCreate = () => {
-    console.log("create"); //создание поста по кнопке create
-  };
-
   useEffect(() => {
     api.getUser().then((ans) => {
-      //получение юзера по токену /users/me
-      console.log(ans); //в Api getUser(token)
-      setUser(ans);
+      console.log(ans);
+      setUser(ans); //получение юзера по токену /users/me в Api getUser(token)
     });
   }, []);
 
-  useEffect(() => {
-    //получение одного поста /posts/:id
-    //в Api getPost(token)
-  }, []);
+//   useEffect(() => {
+//     api.getSinglePost().then((ans) => {
+//       setPost(ans); //получение одного поста /posts/:id в Api getPost(token)
+//      });
+//    }, []); 
 
   useEffect(() => {
     api.getPosts().then((ans) => {
-      //получение списка постов
-      console.log(ans); //в Api getPosts()
-      setPosts(ans);
+      console.log(ans);
+      setPosts(ans); //получение списка постов в Api getPosts()
     });
   }, []);
 
@@ -68,24 +60,21 @@ function App() {
           </div>
           <Routes>
             <Route path="/" element={<Posts posts={posts} />} />
-            <Route exact path="/post/:id" element={<Post />} />
+            <Route exact path="/post/:id" element={<PostPage />} />
             <Route path="/edit-post" element={<Posts />} />
           </Routes>
-          {/* {modalActivity && <Modal title="Profile" handleCreateClick={handleModalCreate} handleCloseModal={closeModal}>
-                    <Routes>
-                        <Route path="/" element={<UserEdit user={user} />} />
-                        <Route path="/create-post" element={<CreatePost />} />
-                    </Routes>
-                </Modal>} */}
-          {modalActivity && (
+
+          {modalActivity && <CreatePost closeModal={closeModal} />}
+
+          {/* {modalActivity && (
             <Modal
-              handleCloseModal={closeModal}
-              handleCreateClick={savePost}
+                handleCloseModal={closeModal}
+              // handleCreateClick={savePost}
               title="Create Post"
             >
               <CreatePost />
             </Modal>
-          )}
+          )} */}
 
           <div id="modal-root" />
         </main>
