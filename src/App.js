@@ -31,11 +31,11 @@ function App() {
     });
   }, []);
 
-//   useEffect(() => {
-//     api.getSinglePost().then((ans) => {
-//       setPost(ans); //получение одного поста /posts/:id в Api getPost(token)
-//      });
-//    }, []); 
+  //   useEffect(() => {
+  //     api.getSinglePost().then((ans) => {
+  //       setPost(ans); //получение одного поста /posts/:id в Api getPost(token)
+  //      });
+  //    }, []);
 
   useEffect(() => {
     api.getPosts().then((ans) => {
@@ -49,7 +49,27 @@ function App() {
       <BrowserRouter>
         <Header user={user} handleEditClick={openModal} />
         <main className="container">
-          <div className="welcomeBlock">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <div className="welcomeBlock">
+                    <div>
+                      <h1>Welcome to the posts page</h1>
+                      <p>Look and post</p>
+                    </div>
+                    <button className="btn btnOk" onClick={openModal}>
+                      Create Post
+                    </button>
+                  </div>
+                  <Posts posts={posts} />
+                </>
+              }
+            />
+            <Route exact path="/post/:id" element={<PostPage />} />
+          </Routes>
+          {/* <div className="welcomeBlock">
             <div>
               <h1>Welcome to the posts page</h1>
               <p>Look and post</p>
@@ -62,7 +82,7 @@ function App() {
             <Route path="/" element={<Posts posts={posts} />} />
             <Route exact path="/post/:id" element={<PostPage />} />
             <Route path="/edit-post" element={<Posts />} />
-          </Routes>
+          </Routes> */}
 
           {modalActivity && <CreatePost closeModal={closeModal} />}
 

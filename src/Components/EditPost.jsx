@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
 import Api from "../Api";
-import Modal from "./Modal/Index";
 
-const CreatePost = ({closeModal}) => {
-  const [title, setTitle] = useState("");
-  const [image, setImage] = useState("");
-  const [text, setText] = useState("");
-  const [tags, setTags] = useState([]);
+const EditPost = ({ post, cancelEdit, setPost }) => {
+  const [title, setTitle] = useState(post.title);
+  const [image, setImage] = useState(post.image);
+  const [text, setText] = useState(post.text);
+  const [tags, setTags] = useState(post.tags);
+  const [error, setError] = useState("");
 
   const handleChangeImage = (e) => {
     setImage(e.target.value);
@@ -25,14 +26,24 @@ const CreatePost = ({closeModal}) => {
     setTags(e.target.value);
   };
 
-  const savePost = () => {
-    Api.savePost(title, text, image, tags.split(","))
+  const updatePost = () => {
+      const tagsArr = Array.isArray(tags) ? tags : tags.split(",");
+      console.log(tags);
+    Api.updatePost(title, text, image, tagsArr, post._id).then(
+      (result) => {
+        setPost(result);
+        setError("");
+      }
+    ).catch((error) => {
+        setError(error)
+    });
   };
-    
-  
+
   return (
-    <Modal handleCloseModal={closeModal} handleCreateClick={savePost} title="Create Post">
-      <div>Test</div>
+    <div>
+      <button onClick={updatePost}>Save</button>
+      <button onClick={cancelEdit}>Cancel</button>
+      {error && <div>{error}</div>}
       <input
         type="url"
         placeholder="URL post's picture"
@@ -64,8 +75,8 @@ const CreatePost = ({closeModal}) => {
         value={tags}
         onChange={handleChangeTags}
       />
-    </Modal>
+    </div>
   );
 };
 
-export default CreatePost;
+export default EditPost;

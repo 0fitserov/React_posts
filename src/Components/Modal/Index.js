@@ -25,7 +25,7 @@ const ModalComponent = ({
               Close
             </button>
             <button className="btn createBtn btnOk" onClick={handleCreateClick}>
-              Create
+              Save
             </button>
           </div>
         </div>

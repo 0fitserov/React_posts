@@ -32,8 +32,8 @@ class Api {
 
     }
 
-    getSinglePost() {
-        return fetch(`${this.path}/post/${_id}`, {
+    getSinglePost(id) {
+        return fetch(`${this.path}/posts/${id}`, {
             headers: {
                 authorization: `Bearer ${this.token}`
             }
@@ -48,6 +48,18 @@ class Api {
                 'Content-Type': 'application/json'
             },
             method: 'POST',
+            body: JSON.stringify({title, text, image, tags})
+
+        }).then(responseHandler)
+    }
+
+    updatePost(title, text, image, tags, postId) {
+        return fetch( `${this.path}/posts/${postId}`, {
+            headers: {
+                authorization: `Bearer ${this.token}`,
+                'Content-Type': 'application/json'
+            },
+            method: 'PATCH',
             body: JSON.stringify({title, text, image, tags})
 
         }).then(responseHandler)
