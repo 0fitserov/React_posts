@@ -25,6 +25,16 @@
 
 }
 
+
+.modal__close {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+}
+
 .modalHeader {
     display: flex;
     justify-content: space-between;
@@ -39,6 +49,42 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 10px;
-    
+    padding: 15px 0px 15px 0px;
+}
+
+.input {
+    height: 40px;
+    width: 100%;
+    list-style: none;
+    border: 1px solid #8d9294;
+	border-radius: 12px; 
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding-left: 20px;
+    /* border-color: #8d9294; */
+}
+
+/* input:focus {
+    box-shadow: 1px 1px 2px 0 red;
+  } */
+
+.input text {
+    padding-left: 50px;
+}
+
+
+
+.postImg {
+    width: 100%;
+    border-radius: 12px;
+    background: cover;
+}
+
+.postTextarea {
+
+    max-width: minmax(150px, max-content);
+    min-height: 250px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    /* resize: none; */
 }

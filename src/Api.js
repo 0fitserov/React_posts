@@ -9,85 +9,97 @@ const responseHandler = (res) => {
 }
 
 class Api {
-    constructor({ path, token }) {
-        this.path = path;
-        this.token = token;
-    }
+  constructor({ path, token }) {
+    this.path = path;
+    this.token = token;
+  }
 
-    getUser() {
-        return fetch(`${this.path}/users/me`, {
-            headers: {
-                authorization: `Bearer ${this.token}`
-            }
-        }).then(responseHandler);
+  getUser() {
+    return fetch(`${this.path}/users/me`, {
+      headers: {
+        authorization: `Bearer ${this.token}`,
+      },
+    }).then(responseHandler);
+  }
 
-    }
+  getPosts() {
+    return fetch(`${this.path}/posts`, {
+      headers: {
+        authorization: `Bearer ${this.token}`,
+      },
+    }).then(responseHandler);
+  }
 
-    getPosts() {
-        return fetch(`${this.path}/posts`, {
-            headers: {
-                authorization: `Bearer ${this.token}`
-            }
-        }).then(responseHandler);
+  getSinglePost(id) {
+    return fetch(`${this.path}/posts/${id}`, {
+      headers: {
+        authorization: `Bearer ${this.token}`,
+      },
+    }).then(responseHandler);
+  }
 
-    }
+  savePost(title, text, image, tags) {
+    return fetch(`${this.path}/posts`, {
+      headers: {
+        authorization: `Bearer ${this.token}`,
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify({ title, text, image, tags }),
+    }).then(responseHandler);
+  }
 
-    getSinglePost(id) {
-        return fetch(`${this.path}/posts/${id}`, {
-            headers: {
-                authorization: `Bearer ${this.token}`
-            }
-        }).then(responseHandler);
+  updatePost(title, text, image, tags, postId) {
+    return fetch(`${this.path}/posts/${postId}`, {
+      headers: {
+        authorization: `Bearer ${this.token}`,
+        "Content-Type": "application/json",
+      },
+      method: "PATCH",
+      body: JSON.stringify({ title, text, image, tags }),
+    }).then(responseHandler);
+  }
 
-    }
+  saveUserAvatar(avatar) {
+    return fetch(`${this.path}/users/me/avatar`, {
+      headers: {
+        authorization: `Bearer ${this.token}`,
+        "Content-Type": "application/json",
+      },
+      method: "PATCH",
+      body: JSON.stringify({ avatar }),
+    }).then(responseHandler);
+  }
 
-    savePost(title, text, image, tags) {
-        return fetch( `${this.path}/posts`, {
-            headers: {
-                authorization: `Bearer ${this.token}`,
-                'Content-Type': 'application/json'
-            },
-            method: 'POST',
-            body: JSON.stringify({title, text, image, tags})
+  saveUserInfo(name, about) {
+    return fetch(`${this.path}/users/me`, {
+      headers: {
+        authorization: `Bearer ${this.token}`,
+        "Content-Type": "application/json",
+      },
+      method: "PATCH",
+      body: JSON.stringify({ about, name }),
+    }).then(responseHandler);
+  }
 
-        }).then(responseHandler)
-    }
+  setLikePost(postId) {
+    return fetch(`${this.path}/posts/likes/${postId}`, {
+      headers: {
+        authorization: `Bearer ${this.token}`,
+      },
+      method: "PUT",
+    }).then(responseHandler);
+  }
 
-    updatePost(title, text, image, tags, postId) {
-        return fetch( `${this.path}/posts/${postId}`, {
-            headers: {
-                authorization: `Bearer ${this.token}`,
-                'Content-Type': 'application/json'
-            },
-            method: 'PATCH',
-            body: JSON.stringify({title, text, image, tags})
+  removeLikePost(postId) {
+    return fetch(`${this.path}/posts/likes/${postId}`, {
+      headers: {
+        authorization: `Bearer ${this.token}`,
+      },
+      method: "DELETE",
+    }).then(responseHandler);
+  }
 
-        }).then(responseHandler)
-    }
-
-    saveUserAvatar(avatar) {
-        return fetch( `${this.path}/users/me/avatar`, {
-            headers: {
-                authorization: `Bearer ${this.token}`,
-                'Content-Type': 'application/json'
-            },
-            method: 'PATCH',
-            body: JSON.stringify({avatar})
-
-        }).then(responseHandler)
-    }
-
-    saveUserInfo(name, about) {
-        return fetch( `${this.path}/users/me`, {
-            headers: {
-                authorization: `Bearer ${this.token}`,
-                'Content-Type': 'application/json'
-            },
-            method: 'PATCH',
-            body: JSON.stringify({about, name})
-
-        }).then(responseHandler)
-    }
 
 
 }

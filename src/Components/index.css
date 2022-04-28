@@ -1,0 +1,35 @@
+
+.input {
+    height: 40px;
+    width: 100%;
+    list-style: none;
+    border: 1px solid #8d9294;
+	border-radius: 12px; 
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+input:focus {
+    box-shadow: 2px 2px 4px 0 rgba(62, 124, 62, 0.6);
+  }
+
+.input text {
+    padding-left: 50px;
+}
+
+.postImg {
+    width: 100%;
+    border-radius: 12px;
+    background: cover;
+}
+
+.postTextarea {
+
+    max-width: minmax(150px, max-content);
+    min-height: 250px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    resize: none;
+}
+

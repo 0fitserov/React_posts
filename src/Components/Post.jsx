@@ -1,7 +1,8 @@
 import React from "react";
-import "../index.css";
+import Likes from "./Likes/index.jsx";
+import { Link } from "react-router-dom";
 
-import { Routes, Route, useParams, Link } from "react-router-dom";
+import "../index.css";
 
 const Post = (props) => {
   const dateUpdate = new Date(props.updated_at);
@@ -9,7 +10,7 @@ const Post = (props) => {
     dateUpdate.getMonth() + 1
   }.${dateUpdate.getFullYear()}`;
 
-  return (
+ return (
     <>
       <div className="card">
         <div className="cardHeader">
@@ -35,10 +36,19 @@ const Post = (props) => {
             <p>{props.text}</p>
           </div>
         </Link>
+
         <div className="cardFooter">
-          <h4>like</h4>
-          <div>{displayDate}</div>
+          <div className="footerOne">
+            <Likes likes={props.likes} postId={props._id} userId={props.user._id} setPost={props.updatePosts}/>
+            <div>{displayDate}</div>
+          </div>
+          <div className="footerTwo">
+            {props.tags.map((tag, i) => (
+              <div className="tags" key={`${tag}${i}`}>{tag}</div>
+            ))}
+          </div>
         </div>
+
       </div>
     </>
   );

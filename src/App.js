@@ -24,18 +24,25 @@ function App() {
     setModalActivity(false);
   };
 
+  const updatePosts = (post) => {
+    setPosts(state => {
+      const updatedPostIndex = state.findIndex(el => el._id === post._id)
+      return [
+        ...state.slice(0, updatedPostIndex),
+        post,
+        ...state.slice(updatedPostIndex+1, state.length)
+      ]
+    })
+
+
+  };
+
   useEffect(() => {
     api.getUser().then((ans) => {
       console.log(ans);
       setUser(ans); //получение юзера по токену /users/me в Api getUser(token)
     });
   }, []);
-
-  //   useEffect(() => {
-  //     api.getSinglePost().then((ans) => {
-  //       setPost(ans); //получение одного поста /posts/:id в Api getPost(token)
-  //      });
-  //    }, []);
 
   useEffect(() => {
     api.getPosts().then((ans) => {
@@ -63,38 +70,14 @@ function App() {
                       Create Post
                     </button>
                   </div>
-                  <Posts posts={posts} />
+                  <Posts posts={posts} user={user} updatePosts={updatePosts}/>
                 </>
               }
             />
-            <Route exact path="/post/:id" element={<PostPage />} />
+            <Route exact path="/post/:id" element={<PostPage user={user}/>} />
           </Routes>
-          {/* <div className="welcomeBlock">
-            <div>
-              <h1>Welcome to the posts page</h1>
-              <p>Look and post</p>
-            </div>
-            <button className="btn btnOk" onClick={openModal}>
-              Create Post
-            </button>
-          </div>
-          <Routes>
-            <Route path="/" element={<Posts posts={posts} />} />
-            <Route exact path="/post/:id" element={<PostPage />} />
-            <Route path="/edit-post" element={<Posts />} />
-          </Routes> */}
 
           {modalActivity && <CreatePost closeModal={closeModal} />}
-
-          {/* {modalActivity && (
-            <Modal
-                handleCloseModal={closeModal}
-              // handleCreateClick={savePost}
-              title="Create Post"
-            >
-              <CreatePost />
-            </Modal>
-          )} */}
 
           <div id="modal-root" />
         </main>

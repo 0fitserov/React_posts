@@ -2,13 +2,12 @@ import React from "react";
 import Post from "../Components/Post";
 import "../index.css";
 
-import { Link } from "react-router-dom";
-
-const Posts = ({ posts }) => {
+const Posts = ({ posts, user, updatePosts }) => {
+  const reversedPosts = [...posts].reverse();
   return (
     <div className="listsPosts">
-      {posts.map((post, i) => (
-        <Post {...post} key={post._id} />
+      {reversedPosts.map((post, i) => (
+        <Post {...post} user={user} key={post._id} updatePosts={updatePosts}/>
       ))}
     </div>
   );
@@ -16,8 +15,3 @@ const Posts = ({ posts }) => {
 
 export default Posts;
 
-{
-  /* <Link to={`/post/${post._id}`} key={`${post._id}${i}`}>
-                    
-                </Link> */
-}

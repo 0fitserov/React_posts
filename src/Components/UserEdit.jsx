@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Api from "../Api";
 import Modal from "./Modal/Index";
 
+import "./index.css";
+
 const UserEdit = ({ user, closeModal }) => {
   const [avatar, setAvatar] = useState(user.avatar);
   const [name, setName] = useState(user.name);
