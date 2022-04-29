@@ -65,7 +65,7 @@ const PostPage = ({user, userId}) => {
               <div className="otherInfo">
                 {post.author._id===user._id ? <button onClick={handleEdit} className="btn edit">
                   {!isEditing ? "Edit Post" : "View post"} 
-                </button> : <div></div>}
+                </button> : null}
                 {/* выше выбор кнопки edit в зависимости от id пользователя */}
                 <Likes likes={post.likes} postId={post._id} userId={user._id} setPost={setPost}/>
                 <div className="tagsList">{post.tags.map((tag, i) => (

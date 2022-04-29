@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Api from "../Api";
 import Modal from "./Modal/Index";
 
-const CreatePost = ({closeModal}) => {
+const CreatePost = ({closeModal, addPost}) => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [text, setText] = useState("");
@@ -26,8 +26,12 @@ const CreatePost = ({closeModal}) => {
   };
 
   const savePost = () => {
-    Api.savePost(title, text, image, tags.split(","))
+    Api.savePost(title, text, image, tags.split(",")).then((post) => {
+      closeModal();
+      addPost(post);
+    })
   };
+
     
   
   return (

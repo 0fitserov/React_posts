@@ -1,12 +1,12 @@
 const config = {
-    path: "https://api.react-learning.ru",
-    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjU1YTVmNTk0N2M3MjkyZDhjMjA0ZTQiLCJpYXQiOjE2NDk3ODAyMTYsImV4cCI6MTY4MTMxNjIxNn0.1GjB9abnYhAUj4ljGNhGJyk9yXq0mnTGmCi3_MFJV1Y"
-}
-
+  path: "https://api.react-learning.ru",
+  token:
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjU1YTVmNTk0N2M3MjkyZDhjMjA0ZTQiLCJpYXQiOjE2NDk3ODAyMTYsImV4cCI6MTY4MTMxNjIxNn0.1GjB9abnYhAUj4ljGNhGJyk9yXq0mnTGmCi3_MFJV1Y",
+};
 
 const responseHandler = (res) => {
-    return res.ok ? res.json() : Promise.reject(`Ошибка ${res.status}`);
-}
+  return res.ok ? res.json() : Promise.reject(`Ошибка ${res.status}`);
+};
 
 class Api {
   constructor({ path, token }) {
@@ -100,9 +100,29 @@ class Api {
     }).then(responseHandler);
   }
 
+  getPostsPages(pageNumber, limit, filterQuery) {
+    return fetch(
+      `${this.path}/posts/paginate?page=${pageNumber}&limit=${limit}${filterQuery ? `&query=${filterQuery}` : ""}`,
+      {
+        headers: {
+          authorization: `Bearer ${this.token}`,
+        },
+      }
+    ).then(responseHandler);
+  }
 
+  deletePost(postId) {
+    return fetch(`${this.path}/posts/${postId}`, {
+      headers: {
+        authorization: `Bearer ${this.token}`,
+      },
+      method: "DELETE",
+    }).then(responseHandler);
+  }
 
 }
+
+
 
 const api = new Api(config);
 
