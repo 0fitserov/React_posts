@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import UserEdit from "./UserEdit";
-import Logo from "../Logo";
+import Logo from "./Logo";
 
 import "../index.css";
 
@@ -21,7 +21,7 @@ const Header = ({ user, handleEditClick }) => {
       <div className="header">
         <div className="header__logo">
           <Logo />
-          <h2>Posts react</h2>
+          <h2>React Posts</h2>
         </div>
         <div className="userCard">
           <img

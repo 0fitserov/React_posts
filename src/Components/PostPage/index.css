@@ -115,3 +115,22 @@
     justify-content: center;
     gap: 10px;
 }
+
+.delete {
+    width: 30px;
+    border: 2px solid rgba(155, 77, 77, 0.5);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.delete:hover {
+    width: 30px;
+    border: 3px solid rgb(211, 45, 45);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.delete img {
+    display: flex;
+    align-items: center;
+}

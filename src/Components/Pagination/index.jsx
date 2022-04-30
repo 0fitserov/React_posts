@@ -21,47 +21,68 @@ const Pagination = ({ totalPages, currentPage, setPage }) => {
   let centrBlock;
 
   if (currentPage < 4) {
-    centrBlock = new Array(4).fill(1).map((val, index) => {
-      return (
-        <PaginationBtn
-          onClick={() => {
-            goToPage(index + 2);
-          }}
-          key={index + 2}
-        >
-          {index + 2}
-        </PaginationBtn>
-      );
-    });
+    centrBlock = (
+      <>
+        {new Array(4).fill(1).map((val, index) => {
+          return (
+            <PaginationBtn
+              onClick={() => {
+                goToPage(index + 2);
+              }}
+              key={index + 2}
+              active={currentPage===index + 2}
+            >
+              {index + 2}
+            </PaginationBtn>
+          );
+        })}
+        <span className="skip-pages">...</span>
+      </>
+    );
   } else if (currentPage < totalPages - 3) {
-    centrBlock = new Array(5).fill(1).map((val, index) => {
-      const displayedPage = currentPage - 2 + index;
-      return (
-        <PaginationBtn
-          onClick={() => {
-            goToPage(displayedPage);
-          }}
-          key={displayedPage}
-        >
-          {displayedPage}
-        </PaginationBtn>
-      );
-    });
+    centrBlock = (
+      <>
+        {currentPage - 3 > 1 && <span className="skip-pages">...</span>}
+        {new Array(5).fill(1).map((val, index) => {
+          const displayedPage = currentPage - 2 + index;
+          return (
+            <PaginationBtn
+              onClick={() => {
+                goToPage(displayedPage);
+              }}
+              active={currentPage===displayedPage}
+              key={displayedPage}
+            >
+              {displayedPage}
+            </PaginationBtn>
+          );
+        })}
+        {currentPage + 3 < totalPages && <span className="skip-pages">...</span>}
+      </>
+    );
   } else {
-    centrBlock = new Array(4).fill(1).map((val, index) => {
-      const displayedPage = totalPages - 4 + index;
-      return (
-        <PaginationBtn
-          onClick={() => {
-            goToPage(displayedPage);
-          }}
-          key={displayedPage}
-        >
-          {displayedPage}
-        </PaginationBtn>
-      );
-    });
+    centrBlock = (
+      <>
+        <span className="skip-pages">...</span>
+        {new Array(4).fill(1).map((val, index) => {
+          const displayedPage = totalPages - 4 + index;
+          return (
+            <PaginationBtn
+              onClick={() => {
+                goToPage(displayedPage);
+              }}
+              active={currentPage===displayedPage}
+              key={displayedPage}
+            >
+              {displayedPage}
+            </PaginationBtn>
+          );
+        })}
+      </>
+    );
   }
+
+  console.log("page ", currentPage);
 
   return (
     <>
@@ -69,7 +90,8 @@ const Pagination = ({ totalPages, currentPage, setPage }) => {
       <PaginationBtn
         onClick={() => {
           goToPage(1);
-        }}
+
+        }} active={currentPage===1}
       >
         1
       </PaginationBtn>
@@ -77,7 +99,7 @@ const Pagination = ({ totalPages, currentPage, setPage }) => {
       <PaginationBtn
         onClick={() => {
           goToPage(totalPages);
-        }}
+        }} active={currentPage===totalPages}
       >
         {totalPages}
       </PaginationBtn>

@@ -6,7 +6,7 @@ import Likes from "../Likes/index.jsx"
 
 import "./index.css";
 
-const PostPage = ({user, userId}) => {
+const PostPage = ({user, updatePosts}) => {
   const [post, setPost] = useState(null);
   const { id } = useParams();
   const [isEditing, setIsEditing] = useState(false);
@@ -45,7 +45,7 @@ const PostPage = ({user, userId}) => {
           <Link to="/">Back</Link>
         </button>
         {isEditing ? (
-          <EditPost post={post} cancelEdit={cancelEdit} setPost={setPost} />
+          <EditPost post={post} cancelEdit={cancelEdit} setPost={setPost} updatePosts={updatePosts}/>
         ) : (
           <div className="postCard">
             <img className="picture" src={post.image} alt="img"></img>

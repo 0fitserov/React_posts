@@ -13,11 +13,10 @@ const Post = (props) => {
   }.${dateUpdate.getFullYear()}`;
 
   const deletePost = () => {
-    console.log(props._id);
+    
     const confirmed = confirm("Действительно хотите удалить этот пост?");
     if (confirmed) {
-      api.deletePost(props._id).then(post => props.removePost(post._id));
-      
+      api.deletePost(props._id).then((post) => props.removePost(post._id));
     }
   };
 
@@ -34,6 +33,9 @@ const Post = (props) => {
             <div>{props.author.name}</div>
             <div>{props.author.about}</div>
           </div>
+          {props.author._id === props.user._id ? (
+            <DeleteBtn onDelete={deletePost} />
+          ) : null}
         </div>
         <Link
           to={`/post/${props._id}`}
@@ -56,9 +58,9 @@ const Post = (props) => {
               userId={props.user._id}
               setPost={props.updatePosts}
             />
-            {props.author._id === props.user._id ? (
+            {/* {props.author._id === props.user._id ? (
               <DeleteBtn onDelete={deletePost} />
-            ) : null}
+            ) : null} */}
             <div>{displayDate}</div>
           </div>
           <div className="footerTwo">

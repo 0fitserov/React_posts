@@ -1,0 +1,19 @@
+.btnPag {
+    height: 35px;
+    width: 35px;
+    font-weight: bold;
+    border-radius: 12px;
+    border: 0px solid #8d9294;
+    background-color: transparent;
+    cursor: pointer;
+    margin: 0px 5px;
+    background-color: rgba(62, 124, 62, 0.2);
+}
+
+.btnPag:hover {
+    background-color: rgba(62, 124, 62, 0.6);
+}
+
+.active {
+    background-color: rgba(62, 124, 62, 0.9);
+}

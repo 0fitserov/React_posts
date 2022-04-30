@@ -1,8 +1,11 @@
 import React from "react";
+import "./index.css";
 
-const PaginationBtn = ({onClick, children}) => {
+const PaginationBtn = ({ onClick, children, active }) => {
   return (
-    <button className="btnPag" onClick={onClick}>{children}</button>
+    <button className={`btnPag ${active ? "active" : ""}`} onClick={onClick}>
+      {children}
+    </button>
   );
 };
 

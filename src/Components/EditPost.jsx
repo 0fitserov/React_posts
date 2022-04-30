@@ -4,7 +4,7 @@ import Api from "../Api";
 
 import "./PostPage/index.css"
 
-const EditPost = ({ post, cancelEdit, setPost }) => {
+const EditPost = ({ post, cancelEdit, setPost, updatePosts }) => {
   const [title, setTitle] = useState(post.title);
   const [image, setImage] = useState(post.image);
   const [text, setText] = useState(post.text);
@@ -33,6 +33,7 @@ const EditPost = ({ post, cancelEdit, setPost }) => {
     console.log(tags);
     Api.updatePost(title, text, image, tagsArr, post._id)
       .then((result) => {
+        updatePosts(result);
         setPost(result);
         setError("");
       })
